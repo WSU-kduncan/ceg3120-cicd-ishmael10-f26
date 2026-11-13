@@ -20,22 +20,22 @@ to DockerHub so i can track versions or roll back to older ones.
 ```mermaid
 flowchart LR
     subgraph Local["Cloned Repo (My Mac)"]
-        A[Edit HTML/CSS & Dockerfile] --> B[git commit & push to main]
-        B --> C[Create & push tag: git tag -a v1.1.0]
+        A["Edit HTML/CSS & Dockerfile"] --> B["git commit & push to main"]
+        B --> C["Create & push tag: git tag -a v1.1.0"]
     end
 
     subgraph GH["GitHub (WSU-kduncan/ceg3120-cicd-ishmael10-f26)"]
-        C --> D[Workflow triggered by v*.*.* tag]
-        D --> E[checkout@v4 grabs repo files]
-        E --> F[login-action@v3 logs in with Secrets]
-        F --> G[metadata-action@v5 makes latest, 1, 1.1 tags]
-        G --> H[build-push-action@v6 builds & pushes image]
+        C --> D["Workflow triggered by v*.*.* tag"]
+        D --> E["checkout@v4 grabs repo files"]
+        E --> F["login-action@v3 logs in with Secrets"]
+        F --> G["metadata-action@v5 makes latest, 1, 1.1 tags"]
+        G --> H["build-push-action@v6 builds & pushes image"]
     end
 
     subgraph DH["DockerHub (kangleos/ceg3120-project6)"]
-        H --> I[Image pushed to public repo]
-        I --> J[Tags updated: latest, 1, 1.1]
-        K[Old 1.0 tag stays on previous build]
+        H --> I["Image pushed to public repo"]
+        I --> J["Tags updated: latest, 1, 1.1"]
+        K["Old 1.0 tag stays on previous build"]
     end
 ```
 
